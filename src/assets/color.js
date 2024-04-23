@@ -1,0 +1,1 @@
+export const primary_color = "rgba(14, 112, 181)"
