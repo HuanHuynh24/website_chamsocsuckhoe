@@ -1,4 +1,3 @@
-import Header from "../../header";
 import { useEffect, useState } from "react";
 import "../css/style.css";
 import Aos from "aos";
@@ -25,7 +24,6 @@ function Home() {
   console.log(listService);
   return (
     <>
-      <Header></Header>
       <div className="slide">
         <div className="heading-slide">
           <h1 className="heading color-heading">Tom Dixon MD</h1>

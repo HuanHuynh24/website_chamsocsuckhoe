@@ -1,6 +1,7 @@
 import "../assets/styles.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleUser , faHospitalUser} from '@fortawesome/free-solid-svg-icons'
+import { Link } from "react-router-dom";
 const HOME = "Home";
 const SERVICE = "Service";
 const MEMBER = "Member";
@@ -16,7 +17,8 @@ function Header(){
       </div>
       <ul className="listItem">
         <li>
-          <a href="#">{HOME}</a>
+          
+         <Link to ="/">{HOME}</Link>
         </li>
         <li>
           <a href="#">{SERVICE}</a>
@@ -30,9 +32,14 @@ function Header(){
         <li>
           <a href="#">{ABOUTUS}</a>
         </li>
-        <li><FontAwesomeIcon style={{color:"red", marginRight:5}} icon={faCircleUser} /><a href="#">{LOG_IN}</a></li>
+        <li>
+          <FontAwesomeIcon style={{color:"red", marginRight:5}} icon={faCircleUser} />
+        <Link to ="/login">{LOG_IN}</Link>
+        </li>
+    
       </ul>
     </header>
+    
   );
 }
 export default Header
