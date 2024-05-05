@@ -1,27 +1,20 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 import "../css/style.css";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import imageDoctor from "../img/doctor.webp";
+import Service from "./service";
 
-const getApi = "http://127.0.0.1:8080/api/dichvu/danhsach";
 function Home() {
   useEffect(() => {
     Aos.init({ duration: 500 });
   }, []);
 
-  const [listService, setlistService] = useState([]);
-  useEffect(() => {
-    fetch(getApi)
-      .then(function (response) {
-        return response.json();
-      })
-      .then(function (servervice) {
-        setlistService(servervice);
-      })
-      .catch((error) => console.log("loi"));
-  }, []);
-  console.log(listService);
+ useEffect(()=>{
+  window.scrollTo(0, 0);
+ },[])
+
+ 
   return (
     <>
       <div className="slide">
@@ -71,40 +64,9 @@ function Home() {
             </div>
           </div>
         </div>
-        <div className="container-service">
-          <div className="container">
-            <div className="row " style={{ flexDirection: "column" }}>
-              <h1 className="color-heading" data-aos="zoom-in-up">
-                How Can I Help You
-              </h1>
-              <div className="service row">
-                {listService.map((service) => {
-                  return (
-                    <div className="itemService" data-aos="zoom-in-up">
-                      <img
-                        className="imgService"
-                        src={require("../img/" + service.anh)}
-                        alt="image service"
-                        style={{ width: "100%", height: "auto" }}
-                      />
-                      <div className="overlayImg"></div>
-                      <p style={{ marginBottom: 40 }}>{service.tenDichVu}</p>
-                      <button className="btnBooknow btn">Book now</button>
-                    </div>
-                  );
-                })}
-              </div>
-              <button
-                className="customBtn btn"
-                data-aos="zoom-in-up"
-                style={{ marginTop: 50, width: 200 }}
-              >
-                More service
-              </button>
-            </div>
-          </div>
-        </div>
-        <div className="container">
+       
+        <Service />
+        <div className="container" id="container">
           <div className="row">
             <div className="banner" data-aos="zoom-in-up">
               <img
@@ -154,5 +116,4 @@ function Home() {
     </>
   );
 }
-
 export default Home;
