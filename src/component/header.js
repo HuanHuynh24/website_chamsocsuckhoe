@@ -61,7 +61,7 @@ function Header(){
           <a href="#">{ABOUTUS}</a>
         </li>
         <li>
-          <FontAwesomeIcon style={{color:"red", marginRight:5}} icon={faCircleUser} />
+          <FontAwesomeIcon style={{color:"blue",fontSize: 27, marginRight:10}} icon={faCircleUser} />
         <Link to ="/login">{LOG_IN}</Link>
         </li>
     
