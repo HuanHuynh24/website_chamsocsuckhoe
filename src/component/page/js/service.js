@@ -4,7 +4,7 @@ const Service = (() =>{
     const [listService, setlistService] = useState([]);
     useEffect(() => {
         request
-        .get('/danhsach')
+        .get('dichvu/danhsach')
           .then(function (servervice) {
             setlistService(servervice);
           })
@@ -19,17 +19,19 @@ const Service = (() =>{
                 How Can I Help You
               </h1>
               <div className="service row">
-                {listService.map((service) => {
+                {listService.map((service1) => {
+                  console.log(service1)
                   return (
-                    <div key={service.idDV} className="itemService" data-aos="zoom-in-up">
+                    <div key={service1.idDV} className="itemService" data-aos="zoom-in-up">
                       <img
                         className="imgService"
-                        src={require("../img/" + service.anh)}
+                        src={require("../img/" + service1.anh)}
                         alt="image service"
                         style={{ width: "100%", height: "auto" }}
                       />
+                     
                       <div className="overlayImg"></div>
-                      <p style={{ marginBottom: 40 }}>{service.tenDichVu}</p>
+                      <p style={{ marginBottom: 40 }}>{service1.tenDichVu}</p>
                       <button className="btnBooknow btn" >Book now</button>
                     </div>
                   );

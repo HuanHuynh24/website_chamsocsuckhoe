@@ -1,22 +1,22 @@
 import React, { useState, useEffect } from "react";
 import "../css/login.css";
+import * as request from "../../../untils/request"
+import { CgPassword } from "react-icons/cg";
 
 const Login = () => {
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
-
-    const handleUsernameChange = (event) => {
-        setUsername(event.target.value);
-    };
-
-    const handlePasswordChange = (event) => {
-        setPassword(event.target.value);
-    };
-
-    const handleLogin = () => {      
-        console.log("Username:", username);
-        console.log("Password:", password);
-    };
+    const [formData, setFormData] = useState({
+        idKhachhangdat:"",
+        tenkhachhang:"",
+        sdt:"",
+        email:"",
+        matkhau:""
+        
+    });
+    const [formLogin, setFormlogin] = useState({
+        username:"",
+        password:""
+    })
+    const [Notification, setNotification] = useState(false)
 
     useEffect(() => {
         const signUpButton = document.getElementById('signUp');
@@ -42,27 +42,80 @@ const Login = () => {
         };
     }, []);
 
+    const handleChange = (e) =>{
+        setFormData({
+            ...formData,
+            [e.target.name]:e.target.value
+        })
+
+    }
+    const handleChangeLogin = (e)=>{
+        setFormlogin({
+            ...formLogin,
+            [e.target.name] :e.target.value
+        })
+    }
+    const handleSuccess =()=>{
+        setNotification(true)
+        setFormData({
+            idKhachhangdat:"",
+            tenkhachhang:"",
+            sdt:"",
+            email:"",
+            matkhau:""
+            
+        })
+    }
+    const handFailure = ()=>{
+        setNotification(false)
+    }
+
+    const handleSubmit = (e) => {  
+        e.preventDefault(); 
+        console.log(formData)
+        document.querySelector('#notification').style.display = "block"
+       
+        request
+        .post('khachhang/signup', formData)
+            .then(handleSuccess)
+            // .then((e)=> console.log(e))
+            .catch(handFailure)
+    };
+
+    const handleLogin = (e)=>{
+        e.preventDefault(); 
+        request
+        .post('khachhang/login', formData)
+            .then(handleSuccess)
+            // .then((e)=> console.log(e))
+            .catch(handFailure)
+    }
+
+    
+
     return (
         <div className="login">
             <div className="container-login">
             <div className="form-container sign-up-container">
-                <form action="#">
+                <form onSubmit={handleSubmit}>
                     <h1>Create Account</h1>
                     <span>or use your email for registration</span>
-                    <input type="text" placeholder="UserName" value={username} onChange={handleUsernameChange}/>
-                    <input type="email" placeholder="Email"/>
-                    <input type="tel" placeholder="Phone Number" />
-                    <input type="password" placeholder="Password" value={password} onChange={handlePasswordChange}/>  
-                    <button onClick={handleLogin}>Sign Up</button>
+                    <input type="text" name="idKhachhangdat" placeholder="Citizen identification code" value={formData.idKhachhangdat} onChange={handleChange}/>
+                    <input type="text" name="tenkhachhang" placeholder="UserName" value={formData.tenkhachhang} onChange={handleChange}/>
+                    <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange}/>
+                    <input type="tel" name="sdt" placeholder="Phone Number" value={formData.sdt} onChange={handleChange}/>
+                    <input type="password" name="matkhau" placeholder="Password" value={formData.matkhau} onChange={handleChange}/>  
+                    <button type="submit">Sign Up</button>
+                    <p id="notification" style={{display:"none"}}>{Notification ?<span>Đăng ký thành công</span>:<span>Đăng ký thất bại</span>}</p>
                 </form>
             </div>
             <div className="form-container sign-in-container">
-                <form action="#">
+                <form onSubmit={handleLogin}>
                     <h1>Sign In</h1>
                     <span>or use your account</span>
-                    <input type="text" placeholder="UserName" value={username} onChange={handleUsernameChange}/>
-                    <input type="password" placeholder="Password" value={password} onChange={handlePasswordChange}/> 
-                    <button onClick={handleLogin}>Sign In</button>
+                    <input type="text"  placeholder="UserName/Phone/Citizen identification code"  value={formLogin.username} onChange={handleChangeLogin} />
+                    <input type="password" placeholder="Password" value={formLogin.password} onChange={handleChangeLogin} /> 
+                    <button type="submit">Sign In</button>
                 </form>
             </div>
             <div className="overlay-container">

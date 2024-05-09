@@ -52,7 +52,7 @@ function Header(){
         <Link to="/" onClick={() => scrollToComponent("service")}>{SERVICE}</Link>
         </li>
         <li>
-          <a href="#">{MEMBER}</a>
+        <Link to="/registerService" >{MEMBER}</Link>
         </li>
         <li>
           <a href="#">{CONTACT}</a>
