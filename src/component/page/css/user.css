@@ -1,0 +1,100 @@
+.new-page-container{
+    width: 1090px; 
+    height: 646px;
+    margin: 140px auto;
+    box-shadow: 0px 14px 28px rgba(0,0,0,.25),
+                0px 10px 10px rgba(0,0,0,.22);
+}
+
+.page-back-btn{
+    width: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
+    background-color: white ;
+    border: none;
+    color: black;
+}
+.page-user{
+  margin: 0 40px;
+}
+
+.new-page3{
+  width: 630px;
+  margin: 100px 0;
+  display: flex;
+  flex-direction: row;
+}
+
+.box-one{
+  width: 150px;
+  border-bottom: black solid 1px;
+}
+
+.box-two{
+  width: 100px;
+  border-bottom: black solid 1px;
+}
+
+.box-three{
+  width: 360px;
+  border-bottom: black solid 1px;
+}
+
+.box-four{
+  width: 560px;
+  border-bottom: black solid 1px;
+}
+.box-1, .box-2, .box-3{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0 10px 10px;
+  color: darkgray;
+}
+
+.box-4{
+  padding: 0 15px 15px;
+  color: darkgray;
+}
+
+.new-page3 input{
+  background-color: white;
+  border: 0;
+}
+
+.page-booking{
+  width: 290px;
+  height: 600px;
+}
+
+.page-booking-1{
+    display: flex;
+    flex-direction: column;
+    width: 290px;
+    margin: 0 50px;
+    
+}
+.page-booking-2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.page-booking-4{
+    margin: 30px 0;
+    border-bottom: 1px solid black;
+}
+
+.check-book-bt{
+    background-color: rgb(5, 71, 147);
+    width: 100%;
+    margin: 0 50px;
+}
+.check-book-bt:hover{
+    background-color: rgb(19, 161, 212);
+    cursor: pointer;
+}
+.page-booking-3{
+  cursor: pointer;
+}

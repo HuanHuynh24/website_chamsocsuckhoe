@@ -9,7 +9,7 @@ a{
     height: 80px;
     justify-content: space-between;
     background: transparent;
-    background-color: rgba(14, 112, 181, 0.7);
+    background-color: RGBA( 30, 144, 255, 1 );
     align-items: center;
     box-shadow: 0 0 1px 1px #ccc;
 

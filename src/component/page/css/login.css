@@ -50,9 +50,9 @@ form{
     text-align: center;
 }
 
-h1{
-    font-weight:  bold;
+h1{   
     margin: 0;
+    font-size: 38px;
 }
 
 span{
@@ -66,12 +66,13 @@ input{
     margin: 8px 0;
     padding: 12px 15px;
     width: 100%;
+    border-radius: 5px;
 }
 
 button{
     border-radius: 20px;
-    border: 1px solid #FF4B2B;
-    background-color: #FF4B2B;
+    border: 1px solid RGBA( 100, 149, 237, 1 );
+    background-color: RGBA( 100, 149, 237, 1 );
     color: #ffffff;
     font-size: 12px;
     font-weight: bold;
@@ -79,6 +80,18 @@ button{
     letter-spacing: 1px;
     text-transform: uppercase;
     transition: transform .8s ease-in-out;
+}
+
+.color-text-a{
+    color: #333;
+    font-size: 14px;
+    text-decoration: none;
+    margin: 15px 0;
+}
+
+p{
+    font-size: 14px;
+    color: #fff;
 }
 
 .sign-in-container{
@@ -100,8 +113,8 @@ button{
 }
 
 .overlay-login{
-    background-color: #FF416C;
-    background: linear-gradient(to right, #FF4B2B, #FF416C);
+    background-color: RGBA( 100, 149, 237, 1 );
+    background: linear-gradient(to right, RGBA( 0, 255, 255, 1 ), RGBA( 100, 149, 237, 1 ));
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 0 0;

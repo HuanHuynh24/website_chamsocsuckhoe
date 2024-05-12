@@ -9,23 +9,24 @@ const SERVICE = "Service";
 const MEMBER = "Member";
 const CONTACT = "Contact";
 const ABOUTUS = "About us";
+const FORUM = "Forum";
 const LOG_IN = "Log in"
 function Header(){
   const [hideHeader, setHideHeader] = useState(false);
   const [heightBefore, setHeight]  = useState(0)
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      setHideHeader(scrollTop > heightBefore);
-      setHeight(scrollTop)
-    };
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  //     setHideHeader(scrollTop > heightBefore);
+  //     setHeight(scrollTop)
+  //   };
 
-    window.addEventListener("scroll", handleScroll);
+  //   window.addEventListener("scroll", handleScroll);
 
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [heightBefore]);
+  //   return () => {
+  //     window.removeEventListener("scroll", handleScroll);
+  //   };
+  // }, [heightBefore]);
 
   const scrollToComponent = (componentId) => {
     const component = document.getElementById(componentId);
@@ -52,21 +53,22 @@ function Header(){
         <Link to="/" onClick={() => scrollToComponent("service")}>{SERVICE}</Link>
         </li>
         <li>
-          <a href="#">{MEMBER}</a>
+          <Link to ="/Member">{MEMBER}</Link>
         </li>
         <li>
           <a href="#">{CONTACT}</a>
         </li>
         <li>
+          <a href="#">{FORUM}</a>
+        </li>
+        <li>
           <a href="#">{ABOUTUS}</a>
         </li>
         <li>
-          <FontAwesomeIcon style={{color:"blue",fontSize: 27, marginRight:10}} icon={faCircleUser} />
+          <FontAwesomeIcon style={{color:"#fff",fontSize: 27, marginRight:10}} icon={faCircleUser} />
         <Link to ="/login">{LOG_IN}</Link>
-        </li>
-    
-      </ul>
-      
+        </li> 
+      </ul>      
     </header>
     
   );

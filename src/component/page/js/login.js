@@ -48,7 +48,7 @@ const Login = () => {
             <div className="form-container sign-up-container">
                 <form action="#">
                     <h1>Create Account</h1>
-                    <span>or use your email for registration</span>
+                    <span>Fill in to register an account</span>
                     <input type="text" placeholder="UserName" value={username} onChange={handleUsernameChange}/>
                     <input type="email" placeholder="Email"/>
                     <input type="tel" placeholder="Phone Number" />
@@ -59,9 +59,10 @@ const Login = () => {
             <div className="form-container sign-in-container">
                 <form action="#">
                     <h1>Sign In</h1>
-                    <span>or use your account</span>
+                    <span>Enter the account you registered with</span>
                     <input type="text" placeholder="UserName" value={username} onChange={handleUsernameChange}/>
                     <input type="password" placeholder="Password" value={password} onChange={handlePasswordChange}/> 
+                    <a href="#" className="color-text-a">Forgot your password?</a>
                     <button onClick={handleLogin}>Sign In</button>
                 </form>
             </div>
@@ -69,15 +70,15 @@ const Login = () => {
                 <div className="overlay-login">
                     
                     <div className="overlay-panel overlay-left">
-                        <h1>Welcome To FF!</h1>
-                        <p>Please Subscribe and Support to our channel</p>
+                        <h1>Welcome Back!</h1>
+                        <p>To keep connected with us please login with your personal info</p>
                         <button className="press" id="signIn">Sign In</button>
                     </div>
 
                     <div className="overlay-panel overlay-right">
-                        <h1>Frontend Forever</h1>
-                        <p>Learn web designing from here in tamil and english</p>
-                        <button className="press" id="signUp">Sign In</button>
+                        <h1>Hello, Friend!</h1>
+                        <p>Enter your personal details and start journey with us</p>
+                        <button className="press" id="signUp">Sign Up</button>
                     </div>
                 </div>
             </div>
