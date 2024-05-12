@@ -1,16 +1,31 @@
 import * as request from "../../../untils/request"
 import { useState , useEffect} from "react";
+import getCookie from "./getCookie";
 const Service = (() =>{
     const [listService, setlistService] = useState([]);
     useEffect(() => {
         request
-        .get('/danhsach')
+        .get('dichvu/danhsach')
           .then(function (servervice) {
             setlistService(servervice);
           })
           .catch((error) => console.log("loi"));
       }, []);
-      console.log(listService);
+      const handleBook = (service)=>{
+          request
+          .get('khachhang/login',{
+            headers: {
+              Authorization: `Bearer ${getCookie}` 
+            }
+          })
+          .then((response)=>{
+            console.log(response)
+          })
+          .catch((response)=>{
+            window.location.href = "/login"
+            alert("Vui lòng đăng nhập trước")
+          })
+      }
       return(
         <div className="container-service" id="service">
           <div className="container">
@@ -19,18 +34,19 @@ const Service = (() =>{
                 How Can I Help You
               </h1>
               <div className="service row">
-                {listService.map((service) => {
+                {listService.map((service1) => {
                   return (
-                    <div key={service.idDV} className="itemService" data-aos="zoom-in-up">
+                    <div key={service1.idDV} className="itemService" data-aos="zoom-in-up">
                       <img
                         className="imgService"
-                        src={require("../img/" + service.anh)}
+                        src={require("../img/" + service1.anh)}
                         alt="image service"
                         style={{ width: "100%", height: "auto" }}
                       />
+                     
                       <div className="overlayImg"></div>
-                      <p style={{ marginBottom: 40 }}>{service.tenDichVu}</p>
-                      <button className="btnBooknow btn" >Book now</button>
+                      <p style={{ marginBottom: 40 }}>{service1.tenDichVu}</p>
+                      <button className="btnBooknow btn" onClick={()=>handleBook(service1.idDichVu)}>Book now</button>
                     </div>
                   );
                 })}

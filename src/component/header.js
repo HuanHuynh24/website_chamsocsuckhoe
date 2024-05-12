@@ -41,7 +41,8 @@ function Header(){
   return (
     <header className={hideHeader ? "header hidden" : "header"}>
       <div className="logo">
-      <FontAwesomeIcon  icon={faHospitalUser} style={{color: "#fff", fontSize:32}} /><FontAwesomeIcon icon="fa-regular fa-hospital-user" style={{color: "#2383cd",}} />
+      <FontAwesomeIcon  icon={faHospitalUser} style={{color: "#fff", fontSize:32}} />
+      <FontAwesomeIcon icon="fa-regular fa-hospital-user" style={{color: "#2383cd",}} />
       <a href="#" style={{marginLeft:5}}>TOM DIXON MD <span style={{color:"#F97425", borderLeft:"1px solid #F97425", marginLeft:5, paddingLeft:5}}>Family Doctor</span></a>
       </div>
       <ul className="listItem">
@@ -53,7 +54,7 @@ function Header(){
         <Link to="/" onClick={() => scrollToComponent("service")}>{SERVICE}</Link>
         </li>
         <li>
-          <Link to ="/Member">{MEMBER}</Link>
+          <Link to ="/Member">{MEMBER}</Link>      
         </li>
         <li>
           <a href="#">{CONTACT}</a>

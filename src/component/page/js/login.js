@@ -1,22 +1,21 @@
 import React, { useState, useEffect } from "react";
 import "../css/login.css";
+import * as request from "../../../untils/request"
 
 const Login = () => {
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
-
-    const handleUsernameChange = (event) => {
-        setUsername(event.target.value);
-    };
-
-    const handlePasswordChange = (event) => {
-        setPassword(event.target.value);
-    };
-
-    const handleLogin = () => {      
-        console.log("Username:", username);
-        console.log("Password:", password);
-    };
+    const [formData, setFormData] = useState({
+        idKhachhangdat:"",
+        tenkhachhang:"",
+        sdt:"",
+        email:"",
+        matkhau:""
+        
+    });
+    const [formLogin, setFormlogin] = useState({
+        username:"",
+        password:""
+    })
+    const [Notification, setNotification] = useState(false)
 
     useEffect(() => {
         const signUpButton = document.getElementById('signUp');
@@ -42,28 +41,94 @@ const Login = () => {
         };
     }, []);
 
+    const handleChange = (e) =>{
+        setFormData({
+            ...formData,
+            [e.target.name]:e.target.value
+        })
+
+    }
+    const handleChangeLogin = (e)=>{
+        setFormlogin({
+            ...formLogin,
+            [e.target.name] :e.target.value
+        })
+    }
+    const handleSuccess =()=>{
+        setNotification(true)
+        setFormData({
+            idKhachhangdat:"",
+            tenkhachhang:"",
+            sdt:"",
+            email:"",
+            matkhau:""
+            
+        })
+    }
+    const handFailure = ()=>{
+        console.log(formData)
+        setNotification(false)
+    }
+
+    const handleSubmit = (e) => {  
+        e.preventDefault(); 
+        document.querySelector('#notification').style.display = "block"
+       
+        request
+        .post('khachhang/signup', formData)
+            .then(handleSuccess)
+            .catch(handFailure)
+    };
+
+    const setCookie = (name, value, expirationDays)=>{
+        const date = new Date();
+        date.setTime(date.getTime() + (expirationDays * 60 * 60 * 1000));
+        const expires = "expires=" + date.toUTCString();
+        document.cookie = name + "=" + value + ";" + expires + ";path=/";
+    }
+    const handleLoginResponse = (response)=>{
+            alert("Đăng nhập thành công")
+            setCookie("jwtToken", response, 10);
+            window.location.reload();
+    }
+    const handleLogin = (e)=>{
+        e.preventDefault(); 
+        request
+        .post('khachhang/login', formLogin)
+            .then(
+                (response) => handleLoginResponse(response)
+            )
+            .catch(
+                (e)=>console.log(e)
+            )
+    }
+
+    
+
     return (
         <div className="login">
             <div className="container-login">
             <div className="form-container sign-up-container">
-                <form action="#">
+                <form onSubmit={handleSubmit}>
                     <h1>Create Account</h1>
-                    <span>Fill in to register an account</span>
-                    <input type="text" placeholder="UserName" value={username} onChange={handleUsernameChange}/>
-                    <input type="email" placeholder="Email"/>
-                    <input type="tel" placeholder="Phone Number" />
-                    <input type="password" placeholder="Password" value={password} onChange={handlePasswordChange}/>  
-                    <button onClick={handleLogin}>Sign Up</button>
+                    <span>or use your email for registration</span>
+                    <input type="text" name="idKhachhangdat" placeholder="Citizen identification code" value={formData.idKhachhangdat} onChange={handleChange}/>
+                    <input type="text" name="tenkhachhang" placeholder="UserName" value={formData.tenkhachhang} onChange={handleChange}/>
+                    <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange}/>
+                    <input type="tel" name="sdt" placeholder="Phone Number" value={formData.sdt} onChange={handleChange}/>
+                    <input type="password" name="matkhau" placeholder="Password" value={formData.matkhau} onChange={handleChange}/>  
+                    <button type="submit">Sign Up</button>
+                    <p id="notification" style={{display:"none"}}>{Notification ?<span>Đăng ký thành công</span>:<span>Đăng ký thất bại</span>}</p>
                 </form>
             </div>
             <div className="form-container sign-in-container">
-                <form action="#">
+                <form onSubmit={handleLogin}>
                     <h1>Sign In</h1>
                     <span>Enter the account you registered with</span>
-                    <input type="text" placeholder="UserName" value={username} onChange={handleUsernameChange}/>
-                    <input type="password" placeholder="Password" value={password} onChange={handlePasswordChange}/> 
-                    <a href="#" className="color-text-a">Forgot your password?</a>
-                    <button onClick={handleLogin}>Sign In</button>
+                    <input type="text" name="username" placeholder="UserName/Phone/Citizen identification code"  value={formLogin.username} onChange={handleChangeLogin} />
+                    <input type="password" name="password" placeholder="Password" value={formLogin.password} onChange={handleChangeLogin} /> 
+                    <p id="notification" style={{display:"none"}}>{Notification ?<span>Đăng nhập thành công</span>:<span>Đăng nhập thất bại</span>}</p>
+                    <button type="submit">Sign In</button>
                 </form>
             </div>
             <div className="overlay-container">
