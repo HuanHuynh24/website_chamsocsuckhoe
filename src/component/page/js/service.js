@@ -1,5 +1,6 @@
 import * as request from "../../../untils/request"
 import { useState , useEffect} from "react";
+import getCookie from "./getCookie";
 const Service = (() =>{
     const [listService, setlistService] = useState([]);
     useEffect(() => {
@@ -10,7 +11,21 @@ const Service = (() =>{
           })
           .catch((error) => console.log("loi"));
       }, []);
-      console.log(listService);
+      const handleBook = (service)=>{
+          request
+          .get('khachhang/login',{
+            headers: {
+              Authorization: `Bearer ${getCookie}` 
+            }
+          })
+          .then((response)=>{
+            console.log(response)
+          })
+          .catch((response)=>{
+            window.location.href = "/login"
+            alert("Vui lòng đăng nhập trước")
+          })
+      }
       return(
         <div className="container-service" id="service">
           <div className="container">
@@ -20,7 +35,6 @@ const Service = (() =>{
               </h1>
               <div className="service row">
                 {listService.map((service1) => {
-                  console.log(service1)
                   return (
                     <div key={service1.idDV} className="itemService" data-aos="zoom-in-up">
                       <img
@@ -32,7 +46,7 @@ const Service = (() =>{
                      
                       <div className="overlayImg"></div>
                       <p style={{ marginBottom: 40 }}>{service1.tenDichVu}</p>
-                      <button className="btnBooknow btn" >Book now</button>
+                      <button className="btnBooknow btn" onClick={()=>handleBook(service1.idDichVu)}>Book now</button>
                     </div>
                   );
                 })}

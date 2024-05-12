@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../css/login.css";
 import * as request from "../../../untils/request"
-import { CgPassword } from "react-icons/cg";
 
 const Login = () => {
     const [formData, setFormData] = useState({
@@ -67,28 +66,41 @@ const Login = () => {
         })
     }
     const handFailure = ()=>{
+        console.log(formData)
         setNotification(false)
     }
 
     const handleSubmit = (e) => {  
         e.preventDefault(); 
-        console.log(formData)
         document.querySelector('#notification').style.display = "block"
        
         request
         .post('khachhang/signup', formData)
             .then(handleSuccess)
-            // .then((e)=> console.log(e))
             .catch(handFailure)
     };
 
+    const setCookie = (name, value, expirationDays)=>{
+        const date = new Date();
+        date.setTime(date.getTime() + (expirationDays * 60 * 60 * 1000));
+        const expires = "expires=" + date.toUTCString();
+        document.cookie = name + "=" + value + ";" + expires + ";path=/";
+    }
+    const handleLoginResponse = (response)=>{
+            alert("Đăng nhập thành công")
+            setCookie("jwtToken", response, 10);
+            window.location.reload();
+    }
     const handleLogin = (e)=>{
         e.preventDefault(); 
         request
-        .post('khachhang/login', formData)
-            .then(handleSuccess)
-            // .then((e)=> console.log(e))
-            .catch(handFailure)
+        .post('khachhang/login', formLogin)
+            .then(
+                (response) => handleLoginResponse(response)
+            )
+            .catch(
+                (e)=>console.log(e)
+            )
     }
 
     
@@ -113,8 +125,9 @@ const Login = () => {
                 <form onSubmit={handleLogin}>
                     <h1>Sign In</h1>
                     <span>or use your account</span>
-                    <input type="text"  placeholder="UserName/Phone/Citizen identification code"  value={formLogin.username} onChange={handleChangeLogin} />
-                    <input type="password" placeholder="Password" value={formLogin.password} onChange={handleChangeLogin} /> 
+                    <input type="text" name="username" placeholder="UserName/Phone/Citizen identification code"  value={formLogin.username} onChange={handleChangeLogin} />
+                    <input type="password" name="password" placeholder="Password" value={formLogin.password} onChange={handleChangeLogin} /> 
+                    <p id="notification" style={{display:"none"}}>{Notification ?<span>Đăng nhập thành công</span>:<span>Đăng nhập thất bại</span>}</p>
                     <button type="submit">Sign In</button>
                 </form>
             </div>
