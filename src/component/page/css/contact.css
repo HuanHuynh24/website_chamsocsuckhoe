@@ -1,0 +1,146 @@
+.new-page-container-n{
+    width: 1090px; 
+    height: 646px;
+    margin: 140px auto;
+    box-shadow: 0px 14px 28px rgba(0,0,0,.25),
+                0px 10px 10px rgba(0,0,0,.22);
+}
+
+.new-page2-n{
+  width: 600px;
+  margin: 0 40px;
+
+  
+}
+.select-option{
+    width: 200px;
+}
+
+input.inputBox{
+    font-size: 22px;
+    padding: 5px 8px 4px 8px;
+    border-radius: 3px;
+    border: 1px solid #d7cccc;
+    width: 260px;
+    background-color: white;
+    color: #6f6b6b;
+}
+
+.calendarWrap{
+    display: inline-block;
+    position: relative;
+    display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.calendarElement{
+    position:absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 40px;
+    border: 1px solid #ccc;
+    z-index: 999;
+}
+
+.page-user-n{
+  margin: 0 40px;
+}
+
+.new-page3-n{
+  width: 630px;
+  margin: 100px 0;
+  display: flex;
+  flex-direction: row;
+}
+
+.box-one-n{
+  width: 150px;
+  border-bottom: black solid 1px;
+}
+
+.box-two-n{
+  width: 100px;
+  border-bottom: black solid 1px;
+}
+
+.box-three-n{
+  width: 360px;
+  border-bottom: black solid 1px;
+}
+
+.box-four-n{
+  width: 560px;
+  border-bottom: black solid 1px;
+}
+.box-1-n, .box-2-n, .box-3-n{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0 10px 10px;
+  color: darkgray;
+}
+
+.box-4-n{
+  padding: 0 15px 15px;
+  color: darkgray;
+}
+
+.new-page3-n input{
+  background-color: white;
+  border: 0;
+}
+
+.page-booking-n{
+  width: 290px;
+  height: 600px;
+}
+
+.page-booking-1-n{
+    display: flex;
+    flex-direction: column;
+    width: 290px;
+    margin: 0 50px;
+    
+}
+.page-booking-2-n {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.page-booking-4-n{
+    margin: 30px 0;
+    border-bottom: 1px solid black;
+}
+
+.check-book-bt-n{
+    background-color: rgb(5, 71, 147);
+    width: 80%;
+    margin: 0 20px;
+}
+.check-book-bt-n:hover{
+    background-color: rgb(19, 161, 212);
+    cursor: pointer;
+}
+.page-booking-3-n{
+  cursor: pointer;
+}
+.box-confirm-btn{
+    width: 180px;
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
+    background-color: rgb(177, 80, 7) ;
+    border: none;
+    color: black;
+    padding: 10px;
+    margin: 0 50px;
+}
+.box-confirm-btn:hover{
+    cursor: pointer;
+    background-color: rgb(233, 135, 24) ;
+}
+.box-confirm2{
+  margin: 20px 0;
+}

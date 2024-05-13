@@ -57,7 +57,7 @@ function Header(){
           <Link to ="">{MEMBER}</Link>      
         </li>
         <li>
-          <a href="#">{CONTACT}</a>
+          <Link to ="/contact">{CONTACT}</Link>
         </li>
         <li>
           <a href="#">{FORUM}</a>
