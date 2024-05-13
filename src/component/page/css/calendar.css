@@ -1,0 +1,128 @@
+.rdrCalendarWrapper {
+    background-color: white !important;    
+}
+.calendar-container{
+    display: flex;
+    flex-direction: row;
+    width: 980px; 
+    height: 438px;
+    margin: 140px auto;
+    box-shadow: 0px 14px 28px rgba(0,0,0,.25),
+                0px 10px 10px rgba(0,0,0,.22);
+}
+.calendarWarp{
+   width: 332px;
+   height: 398px; 
+}
+.rdrDateDisplayWrapper {
+    background-color: white;
+    
+}
+.check{
+    width: 332px;
+    height: 398px;
+    align-items: center;
+    margin: 50px 0;
+}
+.check input{
+    color: black;
+}
+.check-bt{
+    background-color: rgb(5, 71, 147);
+    width: 250px;
+    height: 50px;
+    margin: 0 40px;
+}
+.check-span{
+    font-size: 9px;
+}
+.check-span-bt{
+    background-color: rgb(5, 71, 147);
+    width: 100%;
+}
+.service_detail{
+    width: 262px; 
+    height: 398px;
+    margin: 10px 0
+}
+.CK-span{
+    width: 160px;
+    font-size: 20px;
+    background-color: white;
+}
+
+.check-bt:hover {
+  background-color: rgb(19, 161, 212);
+    cursor: pointer;
+}
+
+.shift{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+.shift-btn{
+    margin: 20px 0;
+    padding: 10px;
+    background-color: white;
+    color: rgb(134, 131, 131);
+}
+.shift-btn:hover{
+    background-color: rgb(19, 161, 212);
+    cursor: pointer;
+}
+.service_detail-1{
+    display: flex;
+    width: 232px;
+    flex-direction: column;
+    margin: 0 15px;
+    
+}
+.service_detail-2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.service_detail-4{
+    margin: 30px 0;
+    border-bottom: 1px solid black;
+}
+
+.icon-container {
+  display: flex;
+  align-items: center;
+}
+.SV-span{
+    width: 105px;
+    height: 13px;
+    font-size: 13px;
+    background-color: white;
+}
+.shift-input{
+    width: 220px;
+    height: 20px;
+    font-size: 30px;
+    background-color: white;
+    color: black;
+    text-transform:uppercase;
+    
+}
+.check-span-bt:hover{
+    background-color: rgb(19, 161, 212);
+    cursor: pointer;
+}
+.service_detail-3:hover{
+    cursor: pointer;
+}
+.select{
+    width: 620px;
+    height: 40px;
+    border-bottom: 1px solid black;
+    padding: 0 10px;
+    margin: 0 10px;
+}
+.select h1{
+    font-size: 20px;
+    color: rgb(3, 93, 145);
+    width: 620px; 
+}
