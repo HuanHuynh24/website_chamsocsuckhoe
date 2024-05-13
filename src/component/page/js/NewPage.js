@@ -190,9 +190,7 @@ const NewPage = () => {
         </div>
       </div>
 
-        </div>
-        
-          
+        </div>                
     </div>
   );
 };

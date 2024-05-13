@@ -1,0 +1,38 @@
+.confirm-container{
+    width: 460px; 
+    height: 346px;
+    margin: 140px auto;
+    box-shadow: 0px 14px 28px rgba(0,0,0,.25),
+                0px 10px 10px rgba(0,0,0,.22);
+}
+
+.box-confirm-btn{
+    width: 230px;
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
+    background-color: white ;
+    border: none;
+    color: black;
+}
+.box-confirm-btn:hover{
+    cursor: pointer;
+}
+.confirm-1{
+    padding: 10px;
+}
+.box-confirm{
+    margin: 50px 0;
+    padding: 15px;
+}
+
+.box-information{
+    margin: 0 20px 0;
+    padding: 10px;
+}
+
+.box-Notification1{
+    display: flex;
+    justify-content: center;
+    align-self: center;
+}
