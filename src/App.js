@@ -4,6 +4,8 @@ import Header from "./component/header";
 import Login from "./component/page/js/login";
 import Member from "./component/page/js/Member";
 import NewPage from "./component/page/js/NewPage";
+import Confirm from "./component/page/js/PageConfirm";
+import Contact from "./component/page/js/contact";
 import RegisterService from "./component/page/js/registerService";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -15,9 +17,11 @@ function App() {
         <Routes>
           <Route path="/" element={<Home/>} />
           <Route path="/login" element={<Login />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="/Member" element={<Member />} />
           <Route path="/your-new-page" element={<NewPage/>} />
           <Route path="/registerService" element={<RegisterService />} />
+          <Route path="/confirm" element={<Confirm />} />
         </Routes>       
       </BrowserRouter>
     </div>

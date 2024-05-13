@@ -1,6 +1,5 @@
 
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import "../css/user.css"; //
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
@@ -11,10 +10,10 @@ const NewPage = () => {
   const location = useLocation();
   const { selectedRange, selectedShift } = location.state;
     const navigate = useNavigate();
-
   const handleGoBack = () => {
     navigate("/Member");
   };
+  
 
   const [showDetails, setShowDetails] = useState(true); // State để điều khiển hiển thị của phần thông tin
 
@@ -149,7 +148,7 @@ const NewPage = () => {
 
             </div>
             
-            <button className="check-book-bt">
+            <button className="check-book-bt" >
                     <span className="check-book">Book Now</span>
                 </button>
 
@@ -158,9 +157,7 @@ const NewPage = () => {
         </div>
       </div>
 
-        </div>
-        
-          
+        </div>                
     </div>
   );
 };
