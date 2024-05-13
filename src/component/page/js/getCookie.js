@@ -1,5 +1,5 @@
-function getCookie(name) {
-    const cookieName = name + "=";
+ function getCookie(name) {
+    const cookieName =name  + "=";
     const decodedCookie = decodeURIComponent(document.cookie);
     const cookieArray = decodedCookie.split(";");
   
@@ -14,6 +14,6 @@ function getCookie(name) {
     }
     return null;
   }
-  
-export default getCookie("jwtToken");
+
+export default getCookie
   

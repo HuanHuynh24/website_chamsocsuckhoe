@@ -12,14 +12,18 @@ const Service = (() =>{
           .catch((error) => console.log("loi"));
       }, []);
       const handleBook = (service)=>{
+        console.log(getCookie("jwtToken"))
           request
           .get('khachhang/login',{
             headers: {
-              Authorization: `Bearer ${getCookie}` 
+              Authorization: `Bearer ${getCookie(("jwtToken"))}` 
             }
           })
           .then((response)=>{
             console.log(response)
+            document.cookie = 'user='+response;
+            document.cookie = 'idDV='+service;
+            window.location.href = "/bookservice"
           })
           .catch((response)=>{
             window.location.href = "/login"
