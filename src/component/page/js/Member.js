@@ -1,12 +1,14 @@
-import { useState } from "react";
+import { useState , useEffect} from "react";
 import { addDays,format } from "date-fns";
 import { DateRange } from "react-date-range";
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import "../css/calendar.css"; //
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleUp } from '@fortawesome/free-solid-svg-icons';
+import { faAngleUp , faAngleDown} from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from "react-router-dom";
+import { IoCheckmarkCircleOutline } from "react-icons/io5";
+import request from "../../../untils/request";
 const Member = () => {
 
     const [selectedRange, setSelectedRange] = useState([
@@ -16,6 +18,35 @@ const Member = () => {
             key:"selection"
         }
     ] );
+    useEffect(() => {
+        checkCa();
+    }, [selectedRange[0].startDate, selectedRange[0].endDate]);
+    const [ca, setCa] = useState({
+        ca1:"",
+        ca2:""
+    })
+    const checkCa = (e)=>{
+        request
+        .get('khachhang/checkdate',{
+            params: {
+                ngbatdau: format(selectedRange[0].startDate, "yyyy-MM-dd") ,
+                ngketthuc: format(selectedRange[0].endDate, "yyyy-MM-dd")
+            }})
+        .then((response)=>{
+            // console.log(response.data)
+            setCa(
+                {
+                  ca1:response.data.ca1,
+                  ca2:response.data.ca2
+                }
+              )
+        })
+        .catch((error)=>{
+            console.log(error)
+        })
+        
+        
+    }
     const handleDateSelect = (item) => {
         setSelectedRange([item.selection]); // Cập nhật trạng thái với ngày bắt đầu và ngày kết thúc được chọn
     };
@@ -24,6 +55,7 @@ const Member = () => {
     const [showShift, setShowShift] = useState(false);
 
   const handleCheckAvailabilityClick = () => {
+
     setShowShift(!showShift);
   };
   const handleShiftSelect = (shift) => { // Hàm xử lý khi chọn buổi
@@ -46,7 +78,7 @@ const Member = () => {
   const navigate = useNavigate();
 
   const handleButtonClick = () => {
-    navigate("/your-new-page", {
+    navigate("/moreinformation", {
         state: {
             selectedRange: selectedRange,
             selectedShift: selectedShift,
@@ -54,10 +86,11 @@ const Member = () => {
         }
     });
   };
-  
+  console.log(ca)
     return(
+       <>
+       <h1 style={{textAlign:"center", marginTop:100, color:"rgb(5, 71, 147)"}}>Let's start booking the service</h1>
         <div className="calendar-container">
-            
             
             <div className="calendarWarp">
                 <div className="select">
@@ -74,16 +107,16 @@ const Member = () => {
             </div>   
             <div className="check">
                 <span >
-                    <input className="CK-span" value={format(selectedRange[0].startDate, "MMM-dd-yyyy")} />
+                    <input className="CK-span" value={format(selectedRange[0].startDate, "MMM-dd-yyyy")}/>
                     &nbsp;,&nbsp;
-                    <input className="CK-span" value={format(selectedRange[0].endDate, "MMM-dd-yyyy")} />
+                    <input className="CK-span"value={format(selectedRange[0].endDate, "MMM-dd-yyyy")} />
                 </span>
                 <button className="check-bt" onClick={handleCheckAvailabilityClick}>
                     <span className="check-span">Check Next availability</span>
                     {showShift && (
                    <div className="shift">
-                       <button className="shift-btn" onClick={() => handleShiftSelect("morning")}>morning</button>
-                       <button className="shift-btn" onClick={() => handleShiftSelect("afternoon")}>afternoon</button>
+                       <button className={ca.ca1==1?"shift-btn":"shift-btn disabled-button"} onClick={() => handleShiftSelect("morning")}>morning</button>
+                       <button className={ca.ca2==1?"shift-btn":"shift-btn disabled-button"} onClick={() => handleShiftSelect("afternoon")}>afternoon</button>
                    </div>
                     )}
                 </button>
@@ -91,22 +124,23 @@ const Member = () => {
             <div className="service_detail">
                 <div className="service_detail-1">
                     <div className="service_detail-2">
-                    <div className="service_detail-3" onClick={() => {
+                    <div className="service_detail-3" >Service Details</div>
+                    <div className="icon-container" onClick={() => {
                         if (showDetails) {
                         handleCollapseDetails();
                         } else {
                         handleExpandDetails();
                         }
-                        }}>Service Details</div>
-                    <div className="icon-container" >
-                   <FontAwesomeIcon icon={faAngleUp} />
+                        }}>
+                    {!showDetails?<FontAwesomeIcon icon={faAngleDown} style={{cursor:"pointer"}}/>: <FontAwesomeIcon icon={faAngleUp} style={{cursor:"pointer"}}/>}
+                  
                     </div>
                 </div>
 
                 <div className="service_detail-4">
                     {showDetails && ( // Hiển thị phần thông tin nếu showDetails là true
                     <div>
-                       <input className="SV-span" value={format(selectedRange[0].startDate, "MMM-dd-yyyy")} />
+                       <input className="SV-span"  value={format(selectedRange[0].startDate, "MMM-dd-yyyy")} />
                        &nbsp;,&nbsp;
                        <input className="SV-span" value={format(selectedRange[0].endDate, "MMM-dd-yyyy")} />   
                        <input className="shift-input" value={selectedShift} />
@@ -119,7 +153,7 @@ const Member = () => {
                     <span className="check-span">Next</span>
                 </button>
             </div>                       
-        </div>
+        </div></>
     )
 }
 export default Member;

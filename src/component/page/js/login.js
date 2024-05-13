@@ -51,6 +51,7 @@ const Login = () => {
     const handleChangeLogin = (e)=>{
         setFormlogin({
             ...formLogin,
+            
             [e.target.name] :e.target.value
         })
     }
@@ -99,7 +100,7 @@ const Login = () => {
                 (response) => handleLoginResponse(response)
             )
             .catch(
-                (e)=>console.log(e)
+                (e)=>alert("Đăng nhập thất bại")
             )
     }
 
